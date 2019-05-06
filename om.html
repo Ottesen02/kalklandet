@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="icon" href="billeder/kalk-fav.png" type="image/gif" sizes="16x16">
+    <title>Om</title>
+</head>
+
+<body>
+    <!--OM-->
+    <!--header-->
+    <header id="myHeader" class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo"><img src="billeder/logo-orange.svg" alt="logo"></a>
+            <div class="burger-menu hide-desktop" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <nav class="hide-mobile">
+                <a href="attraktioner.html">Attraktioner</a>
+                <a href="om.html">Om os</a>
+                <a href="open.html">Kontakt</a>
+                <a href="viden.html">Viden</a>
+                <a href="#">søg</a>
+            </nav>
+        </div>
+    </header>
+    <div id="splashimage">
+        <h1>om os</h1>
+    </div>
+
+    <div class="menu-overlay hide-desktop">
+        <a href="attraktioner.html">Attraktioner</a>
+        <a href="om.html">Om os</a>
+        <a href="open.html">Kontakt</a>
+        <a href="viden.html">Viden</a>
+        <a href="#">Søg</a>
+        <input class="search" type="text" placeholder="SØG">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+
+        </div>
+    </div>
+    <!--kontekstmenu
+    <div id="kontekstmenu">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>-->
+    <section class="om-indhold"></section>
+    <template class="temp-om">
+        <div class="acc">
+            <h2></h2>
+            <div class="content"></div>
+        </div>
+    </template>
+    <!--footer-->
+    <footer data-aos="zoom-in-up" data-aos-duration="1000">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+        </div>
+        <div class="åbningstider">
+            <h3>Åbningstider</h3>
+            <p>man-fre: 09:00-18:00<br>lør-søn: 10:00-16:00</p>
+        </div>
+        <div class="kontakt">
+            <h3>Kontakt</h3>
+            <p>Tlf: +45 12 34 56 78</p>
+            <p>Adresse: Stevns klint</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        let om = [];
+        document.addEventListener("DOMContentLoaded", getJson);
+
+        async function getJson() {
+            const url = "http://mathiasdaugaard.dk/kea/tema7/kalklandet/wordpress/wp-json/wp/v2/om";
+            const omJson = await fetch(url);
+            om = await omJson.json();
+
+            showOm();
+        }
+
+        function showOm() {
+
+            let dest = document.querySelector(".om-indhold");
+            let temp = document.querySelector(".temp-om");
+
+            om.forEach(om1 => {
+                let klon = temp.cloneNode(true).content;
+
+                klon.querySelector("h2").innerHTML = om1.title.rendered;
+                //klon.querySelector("a").href = nyh.tekst;
+                //klon.querySelector("div").innerHTML = att.content.rendered;
+                klon.querySelector(".content").innerHTML = om1.content.rendered;
+                //klon.querySelector(".dato").innerHTML = nyh.dato;
+                //klon.querySelector("section").style.backgroundImage = `url(${nyh.billede.guid})`;
+                klon.querySelector(".acc").setAttribute("id", `a${om1.id}`);
+                dest.appendChild(klon);
+
+                // dest.lastElementChild.addEventListener("click", (e) => {
+                //   console.log(e.target);
+                // e.target.classList.toggle("udfold");
+
+                //  })
+
+            })
+
+            document.querySelectorAll(".acc").forEach(e => {
+                e.addEventListener("click", e => {
+                    console.log(e.target.parentElement.id);
+                    let element = document.querySelector("#" + e.target.parentElement.id);
+
+                    element.classList.toggle("udfold");
+
+                    console.log(e);
+                    console.log(element);
+
+                })
+            })
+
+        }
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

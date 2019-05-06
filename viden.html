@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="icon" href="billeder/kalk-fav.png" type="image/gif" sizes="16x16">
+    <title>Viden</title>
+</head>
+
+<body>
+    <!--OM-->
+    <!--header-->
+    <header id="myHeader" class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo"><img src="billeder/logo-orange.svg" alt="logo"></a>
+            <div class="burger-menu hide-desktop" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <nav class="hide-mobile">
+                <a href="attraktioner.html">Attraktioner</a>
+                <a href="om.html">Om os</a>
+                <a href="open.html">Kontakt</a>
+                <a href="viden.html">Viden</a>
+                <a href="#">søg</a>
+            </nav>
+        </div>
+    </header>
+    <div id="splashimage">
+        <h1>viden</h1>
+    </div>
+
+    <div class="menu-overlay hide-desktop">
+        <a href="attraktioner.html">Attraktioner</a>
+        <a href="om.html">Om os</a>
+        <a href="open.html">Kontakt</a>
+        <a href="viden.html">Viden</a>
+        <a href="#">Søg</a>
+        <input class="search" type="text" placeholder="SØG">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+
+        </div>
+    </div>
+
+    <section class="viden-indhold kolde-krig">
+        <h2 class="viden-overskrift">Den Kolde Krig</h2>
+        <article class="indhold-kolde-krig"></article>
+    </section>
+    <section class="viden-indhold geologi">
+        <h2 class="viden-overskrift">Kalkens Geologi</h2>
+        <article class="indhold-geologi"></article>
+    </section>
+    <section class="viden-indhold kultur">
+        <h2 class="viden-overskrift">Kalkens Kulturhistorie</h2>
+        <article class="indhold-kultur"></article>
+    </section>
+
+    <template class="temp-kolde-krig">
+        <div class="acc acc-kolde-krig">
+            <h2></h2>
+            <div class="content-kolde-krig"></div>
+        </div>
+    </template>
+    <template class="temp-geologi">
+        <div class="acc acc-geologi">
+            <h2></h2>
+            <div class="content-geologi"></div>
+        </div>
+    </template>
+    <template class="temp-kultur">
+        <div class="acc acc-kultur">
+            <h2></h2>
+            <div class="content-kultur"></div>
+        </div>
+    </template>
+
+    <!--footer-->
+    <footer data-aos="zoom-in-up" data-aos-duration="1000">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+        </div>
+        <div class="åbningstider">
+            <h3>Åbningstider</h3>
+            <p>man-fre: 09:00-18:00<br>lør-søn: 10:00-16:00</p>
+        </div>
+        <div class="kontakt">
+            <h3>Kontakt</h3>
+            <p>Tlf: +45 12 34 56 78</p>
+            <p>Adresse: Stevns klint</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        let kold = [];
+        let geologi = [];
+        let kultur = [];
+        document.addEventListener("DOMContentLoaded", getJsonKold);
+        document.addEventListener("DOMContentLoaded", getJsonGeologi);
+        document.addEventListener("DOMContentLoaded", getJsonKultur);
+
+
+        async function getJsonKold() {
+            const url = "http://mathiasdaugaard.dk/kea/tema7/kalklandet/wordpress/wp-json/wp/v2/koldekrig";
+            const koldJson = await fetch(url);
+            kold = await koldJson.json();
+
+            showKold();
+        }
+
+        function showKold() {
+
+            let dest = document.querySelector(".indhold-kolde-krig");
+            let temp = document.querySelector(".temp-kolde-krig");
+
+            kold.forEach(krig => {
+                let klon = temp.cloneNode(true).content;
+
+                klon.querySelector("h2").innerHTML = krig.title.rendered;
+                klon.querySelector(".content-kolde-krig").innerHTML = krig.content.rendered;
+                klon.querySelector(".acc-kolde-krig").setAttribute("id", `a${krig.id}`);
+                dest.appendChild(klon);
+            })
+
+            document.querySelectorAll(".acc-kolde-krig").forEach(e => {
+                e.addEventListener("click", e => {
+                    console.log(e.target.parentElement.id);
+                    let element = document.querySelector("#" + e.target.parentElement.id);
+
+                    element.classList.toggle("udfold");
+                })
+            })
+
+        }
+
+        async function getJsonGeologi() {
+            const url = "http://mathiasdaugaard.dk/kea/tema7/kalklandet/wordpress/wp-json/wp/v2/kalkensgeologi";
+            const geologiJson = await fetch(url);
+            geologi = await geologiJson.json();
+
+            showGeologi();
+        }
+
+        function showGeologi() {
+
+            let dest = document.querySelector(".indhold-geologi");
+            let temp = document.querySelector(".temp-geologi");
+
+            geologi.forEach(geo => {
+                let klon = temp.cloneNode(true).content;
+
+                klon.querySelector("h2").innerHTML = geo.title.rendered;
+                klon.querySelector(".content-geologi").innerHTML = geo.content.rendered;
+                klon.querySelector(".acc-geologi").setAttribute("id", `a${geo.id}`);
+                dest.appendChild(klon);
+            })
+
+            document.querySelectorAll(".acc-geologi").forEach(e => {
+                e.addEventListener("click", e => {
+                    console.log(e.target.parentElement.id);
+                    let element = document.querySelector("#" + e.target.parentElement.id);
+
+                    element.classList.toggle("udfold");
+                })
+            })
+
+        }
+
+        async function getJsonKultur() {
+            const url = "http://mathiasdaugaard.dk/kea/tema7/kalklandet/wordpress/wp-json/wp/v2/kalkenskulturhistorie";
+            const kulturJson = await fetch(url);
+            kultur = await kulturJson.json();
+
+            showKultur();
+        }
+
+        function showKultur() {
+
+            let dest = document.querySelector(".indhold-kultur");
+            let temp = document.querySelector(".temp-kultur");
+
+            kultur.forEach(kul => {
+                let klon = temp.cloneNode(true).content;
+
+                klon.querySelector("h2").innerHTML = kul.title.rendered;
+                klon.querySelector(".content-kultur").innerHTML = kul.content.rendered;
+                klon.querySelector(".acc-kultur").setAttribute("id", `a${kul.id}`);
+                dest.appendChild(klon);
+            })
+
+            document.querySelectorAll(".acc-kultur").forEach(e => {
+                e.addEventListener("click", e => {
+                    console.log(e.target.parentElement.id);
+                    let element = document.querySelector("#" + e.target.parentElement.id);
+
+                    element.classList.toggle("udfold");
+                })
+            })
+
+        }
+
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+    </script>
+</body>
+
+</html>

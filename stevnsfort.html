@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="icon" href="billeder/stevns-fav.png" type="image/gif" sizes="16x16">
+    <title>Koldkrigsmuseum Stevnsfort</title>
+</head>
+
+<body>
+    <!--header-->
+    <header id="myHeader" class="header">
+        <div class="header-content">
+
+            <a href="index.html" class="pil"><img src="billeder/tilbage-pil.png" alt=""></a>
+            <a href="stevnsfort.html" class="logo"><img src="billeder/logostevnsfort_logo.png" alt="logo"></a>
+
+            <div class="burger-menu hide-desktop" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <nav class="hide-mobile sf-menu">
+                <a href="sf-undervisning.html">Undervisning</a>
+                <a href="sf-book.html">Book</a>
+                <a href="sf-kontakt.html">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+    <div id="splashvideo" class="sf-placeholder">
+        <video autoplay muted loop id="video">
+            <source src="billeder/sf-baggrundsvideo.mp4">
+        </video>
+        <div class="backgroundcolor">
+            <div class="frontpage-header" data-aos="fade-in" data-aos-duration="2000">
+                <h1>stevnsfort</h1>
+            </div>
+            <a href="#nyheder">
+                <div class="arrow"></div>
+            </a>
+        </div>
+    </div>
+
+    <div class="menu-overlay hide-desktop sf-mobil">
+        <a href="sf-undervisning.html">Undervisning</a>
+        <a href="sf-book.html">Book</a>
+        <a href="sf-kontakt.html">Kontakt</a>
+        <a href="#">Søg</a>
+        <input type="text" placeholder="SØG">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+
+        </div>
+    </div>
+
+    <!--indhold-->
+
+    <section class="frontpage-indhold">
+        <iframe class="ytvideo" width="100%" height="320" src="https://www.youtube.com/embed/wgVHUnfQmik">
+        </iframe>
+        <article class="frontpage-tekst">
+        </article>
+    </section>
+
+
+    <!--footer-->
+    <footer class="sf-footer" data-aos="zoom-in-up" data-aos-duration="1000">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+        </div>
+        <div class="åbningstider">
+            <h3>Åbningstider</h3>
+            <p>man-fre: 09:00-18:00<br>lør-søn: 10:00-16:00</p>
+        </div>
+        <div class="kontakt">
+            <h3>Kontakt</h3>
+            <p>Tlf: +45 12 34 56 78</p>
+            <p>Adresse: Stevns klint</p>
+        </div>
+    </footer>
+    <script src="script.js">
+
+    </script>
+    <script>
+        let fort;
+        document.addEventListener("DOMContentLoaded", getJson);
+
+        async function getJson() {
+            const url = "http://mathiasdaugaard.dk/kea/tema7/kalklandet/wordpress/wp-json/wp/v2/attraktioner/66";
+            const fortJson = await fetch(url);
+            fort = await fortJson.json();
+
+            showFort();
+        }
+
+        function showFort() {
+
+            let dest = document.querySelector(".frontpage-indhold");
+
+            document.querySelector(".frontpage-tekst").innerHTML = fort.content.rendered;
+
+
+        }
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="icon" href="billeder/kalk-fav.png" type="image/gif" sizes="16x16">
+    <title>Kontakt/Åbningstider</title>
+</head>
+
+<body>
+    <!--ÅBNINGSTIDER-->
+    <header id="myHeader" class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo"><img src="billeder/logo-orange.svg" alt="logo"></a>
+            <div class="burger-menu hide-desktop" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <nav class="hide-mobile">
+                <a href="attraktioner.html">Attraktioner</a>
+                <a href="om.html">Om os</a>
+                <a href="open.html">Kontakt</a>
+                <a href="viden.html">Viden</a>
+                <a href="#">søg</a>
+            </nav>
+        </div>
+    </header>
+    <div id="splashimage">
+        <h1>ÅBNINGSTIDER OG KONTAKT</h1>
+    </div>
+
+    <div class="menu-overlay hide-desktop">
+        <a href="attraktioner.html">Attraktioner</a>
+        <a href="om.html">Om os</a>
+        <a href="open.html">Kontakt</a>
+        <a href="viden.html">Viden</a>
+        <a href="#">Søg</a>
+        <input class="search" type="text" placeholder="SØG">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+
+        </div>
+    </div>
+
+    <!--indhold-->
+    <section id="kontakt-indhold">
+        <article class="kontakt">
+        </article>
+    </section>
+    <!--footer-->
+    <footer data-aos="zoom-in-up" data-aos-duration="1000">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+        </div>
+        <div class="åbningstider">
+            <h3>Åbningstider</h3>
+            <p>man-fre: 09:00-18:00<br>lør-søn: 10:00-16:00</p>
+        </div>
+        <div class="kontakt">
+            <h3>Kontakt</h3>
+            <p>Tlf: +45 12 34 56 78</p>
+            <p>Adresse: Stevns klint</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        let kontakt;
+        document.addEventListener("DOMContentLoaded", getJson);
+
+        async function getJson() {
+            const url = "http://mathiasdaugaard.dk/kea/tema7/kalklandet/wordpress/wp-json/wp/v2/kontakt/138";
+            const kontaktJson = await fetch(url);
+            kontakt = await kontaktJson.json();
+
+            showKontakt();
+        }
+
+        function showKontakt() {
+            document.querySelector(".kontakt").innerHTML = kontakt.content.rendered;
+        }
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

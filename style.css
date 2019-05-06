@@ -1,0 +1,1209 @@
+* {
+    /* Rammer alt på hele siden */
+    margin: 0;
+    /* Fjerner margin på alle elementer så det er nemmere selv at styre */
+    padding: 0;
+    /* Fjerner padding på alle elementer så det er nemmere selv at styre */
+    box-sizing: border-box;
+    /* Gør det nemmere at styre margin og padding */
+    font-family: sans-serif;
+    text-decoration: none;
+    /* fjerner understregning på links henter fra Wordpress */
+    scroll-behavior: smooth;
+    /* Gør så siden ikke hopper når man trykker på et link eller men scroller stille og roligt. */
+}
+
+img {
+    width: 100%;
+    /* Sætter vores billeder til at have width 100% */
+}
+
+
+
+/************** Farvekoder til Logoer ***********
+Koldkrigsmuseum Stevsfort = #55798e
+Stevs Klint = #0082ac
+Geomuseum Faxe = #54a29e
+Kalklandet = #fe6400
+*/
+
+/******* Fonts fra lokal mappe *******/
+@font-face {
+    font-family: "Limestone-reg";
+    src: url("Font/LimeStone_regular.otf");
+}
+
+@font-face {
+    font-family: "Limestone-bold";
+    src: url("Font/LimeStone_bold.otf");
+}
+
+@font-face {
+    font-family: "Limestone-heavy";
+    src: url("Font/LimeStone_heavy.otf");
+}
+
+/* Henter fonts fra lokal mappe i stedet for med et link */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: limestone-bold;
+}
+
+/* Sætter alle headers til at have limestone bold font family */
+
+p {
+    font-family: raleway, sans-serif;
+}
+
+/* Sætter alle vores p elementer til at have raleway font family */
+
+/******************** HERO/HEADER/MENU **********************/
+header {
+    /*background-image: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0));
+     Gennemsigtig sort gradient */
+    height: 16vh;
+    /* Højde på header */
+    width: 100%;
+    /* bredde på header */
+    overflow: hidden;
+    /* Alt overskydende overlay bliver gemt */
+    padding: 2.5vh 2vw;
+    /* Padding for at centrere elementer */
+    z-index: 2;
+    /* Højeste z-index så headeren ligger ovenpå alt */
+    position: fixed;
+    /* så headeren sidder fast i toppen */
+    transition: all 1s ease;
+    /* transistion når man åbner mobil-menuen */
+
+}
+
+.white {
+    background-color: white;
+    /* Class som bliver addet i JS når man åbner mobilmenu */
+}
+
+/* Elementer inde i headeren */
+.header-content {
+    display: flex;
+    /* For at få elementer i headeren til at flexe */
+    justify-content: space-between;
+    /* Så vores elementer spredder sig ud */
+    align-items: center;
+    /* Vertikal centrering */
+    max-width: 1200px;
+    /* Max width så vi beholder vores indhold inde på midten på store skærmstørrelser */
+    margin: 0 auto;
+    /* Centrer vores inholdhold når man bruger max-width */
+
+}
+
+nav {
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 15px;
+}
+
+
+/* Links i menuen */
+nav a {
+    color: #fe6400;
+    /* Farve på tekst */
+    padding: 3.5vh 10px;
+    /* for at få luft omkring vores elementer */
+    font-size: 20px;
+    /* Fontstørrelse */
+    font-family: Limestone-reg;
+    /* Vores valgte font */
+    text-transform: uppercase;
+    /* Gør alle bogstaver store */
+    transition: all 0.3s ease;
+    /* Sætter transition på vores hover */
+}
+
+/* Hover på links i menuen */
+nav a:hover {
+    color: orange;
+    /* Farveskift på vores tekst */
+    transform: scale(1.1);
+    /* Størrelsesskift på vores tekst */
+}
+
+/* Logoer i headeren */
+.logo {
+    width: 30vh;
+    /* bredde på vores logoer */
+    padding-top: 15px;
+    /* Luft fra toppen */
+
+}
+
+/* Tilbagepil på undersider */
+.pil {
+    width: 60px;
+    /* Bredde på vores tilbagepil */
+    padding-top: 10px;
+    /* Luft fra toppen */
+    transition: all 0.3s ease;
+    /* Tranistion på vores hovereffekt */
+}
+
+/* Hover på Tilbagepil på undersider  */
+.pil:hover {
+    transform: scale(1.1)
+        /* Størrelsesskift på vores tilbagepil */
+}
+
+/* Container med vores baggrundsvideoer og overskrifter */
+#splashvideo {
+    height: 100vh;
+    /* 100vh så den fylder hele viewporten i højden */
+    width: 100%;
+    /* 100% så den fylder hele viewporten i bredden */
+    background-color: black;
+    /* Fallback color og farve i siden af videoen på store skærme */
+    //background-image: url(billeder/StevensKlint%20Flickr%20Risager.jpg); /*  fallback billede på mobilskærme som ikke kan køre baggrundsvideo */
+    background-size: cover;
+    /* så baggrundsbilledet fylder hele containeren */
+    overflow: hidden;
+    /* Så vores coloroverlay ikke fylder mere end containeren */
+    background-attachment: fixed;
+    /* Paralax effekt */
+    background-position: center;
+    /* For at centrere bagggrundsbilledet */
+}
+
+/* Vores videoer på forsiderne */
+#video {
+    position: absolute;
+    /* Position abosolute så vi kan få vores overskrift til at ligge foran videoen */
+    min-width: 100%;
+    /* gør så videon ikke beholder sine proportions og kan være 100vh på mindre skræmstørrelser */
+    height: 100%;
+    /* Så videoen fylder hele vores container */
+    right: 0;
+    /* Gør så videon starter i højre side og så man ikke ender med at kunne scrolle horisontalt */
+    top: 0;
+    /* placere videon helt oppe i toppen */
+}
+
+/* Mørk farve som ligger på videoen */
+.backgroundcolor {
+    background-color: rgba(0, 0, 0, 0.20);
+    /* Farve på overlay */
+    height: 100vh;
+    /* Så den fylder det hele i højden */
+    width: 100%;
+    /* Så den fylder det hele i bredden */
+    position: absolute;
+    /* Så den kan ligge over videoen */
+
+}
+
+/* Container med vores overskrifter på videoerne */
+.frontpage-header {
+    padding: 45vh 0 35vh;
+    /* Padding for at centrere teksten vertikalt */
+    text-align: center;
+    /* For at centrere teksten horisontalt  */
+    color: white;
+    /* Tekstfarve */
+}
+
+/* Underoverskfit på vores forside */
+.frontpage-header p {
+    font-family: limestone-reg;
+    /* Udvalgte font */
+}
+
+/* Overskrift på vores videoer */
+#splashvideo h1 {
+    color: white;
+    /* farve på teksten */
+    text-transform: uppercase;
+    /* gør alle bostaver store */
+    font-size: 50px;
+    /* tekststørrelse */
+    font-family: Limestone-bold, sans-serif;
+    /* font */
+}
+
+/* vores pil som indikere at der er mere under foldet */
+.arrow {
+    background-image: url(billeder/chevrons-down.svg);
+    /* import af svg */
+    background-size: 100%;
+    /* gør så pilen fylder det hele i containeren*/
+    background-repeat: no-repeat;
+    /* gør så pilen ikke gentager sig selv */
+    height: 100px;
+    width: 100px;
+    margin: -60px auto 0;
+    /* minus margin i toppen for at flytte pilen op */
+    animation-name: bounce;
+    /* navn på vores keyframe animation */
+    animation-direction: alternate;
+    /* Gør så animationen ikke bare starter forfra men skifter retning */
+    animation-duration: 1s;
+    /* længde på vores animation */
+    animation-iteration-count: infinite;
+    /* gør så animationen spiller for evigt */
+}
+
+/* animation på vores pil */
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+        /* startposition for pilen */
+    }
+
+    to {
+        transform: translateY(15px);
+        /* slutposition for pilen, som er 15px lavere */
+    }
+}
+
+/* Herosection/billedesection i toppen af vores undersider */
+#splashimage {
+    height: 45vh;
+    /* Højde på sectionen */
+    background-image: url(billeder/StevensKlint%20Flickr%20Risager.jpg);
+    /*  Baggrundsbilledet */
+    background-size: cover;
+    /* Så billedet passer bedst muligt i containern */
+    overflow: hidden;
+    /* Gemmer alt det overskydende overlay color */
+    background-attachment: fixed;
+    /* Parallax effekt */
+
+}
+
+
+/* Heading i vores herosektion på undersider */
+#splashimage h1 {
+    color: white;
+    /* Tekstfarve */
+    text-transform: uppercase;
+    /* Gør alle bokstaver store */
+    text-align: center;
+    /* Sørge for at teksten er centreret horisontalt */
+    background-color: rgba(0, 0, 0, 0.37);
+    /* Laver et mørkt overlay bag teksten for at få den til at stå mere frem */
+    font-size: 50px;
+    /* Tekststørrelse */
+    padding: 175px 0 999px;
+    /* centrering af teksten vertikalt */
+    font-family: Limestone-bold, sans-serif;
+    /* Font */
+
+}
+
+.gf-placeholder {
+    background-image: url();
+}
+
+.sfn-placeholder {
+    background-image: url();
+}
+
+.sk-placeholder {
+    background-image: url();
+}
+
+/* Mobil menu som åbnes ved klik på burgermenu */
+.menu-overlay {
+    position: fixed;
+    /* Så den ikke forsvinder når man scroller */
+    top: -100vh;
+    /* Position når den ikke er aktiv, altså helt væk fra skærmen */
+    opacity: 0;
+    /* Gennemsigtig når den ikke er aktiv */
+    background-color: #fe6400;
+    /* Farve på baggrund */
+    height: 84vh;
+    /* Højde på menusektionen, sammen med headeren giver det 100vh */
+    width: 100vw;
+    /* Så den fylder hele viewporten i bredden */
+    text-align: center;
+    /* Så vores tekst er centreret horizontalt */
+    padding-top: 100px;
+    /* Gør så der kommer lidt luft i toppen af menuen  */
+    transition: all 1s ease;
+    /* Transistion på vores menu når den bliver aktiveret */
+    z-index: 9999
+        /* Højeste z-index så der er ikke er noget som ender med at ligge ovenpå mobilmenuen */
+}
+
+/* Class som bliver sat på vores menu overlay når man trykker på burgermenuen */
+.menu-transition {
+    top: 16vh;
+    /* placere vores mobil menu lige under vores header som er 16vh høj */
+    opacity: 1;
+    /* Fjerner gennemsigtighed */
+}
+
+/* Links i vores mobilmenu */
+.menu-overlay a {
+    display: block;
+    /* Gør så de er under hinanden*/
+    padding: 10px;
+    /* giver luft omkring vores links */
+    font-size: 20px;
+    /* tekststørrelse */
+    font-family: limestone-bold;
+    /* font */
+    text-transform: uppercase;
+    /* Gør alle bogstaver store */
+    color: white;
+    /* tekstfarve */
+    transition: all 0.3s ease;
+    /* Transition til vores hover effekter (virker ikke på mobil)*/
+}
+
+/* hover til vores mobil menu links */
+.menu-overlay a:hover {
+    transform: scale(1.1)
+        /* gør teksten større */
+}
+
+/* søge bar i vores mobil menu */
+.menu-overlay input {
+    height: 35px;
+    width: 200px;
+    border-radius: 20px;
+    /* gør hjørnerne runde */
+    padding: 15px 10px;
+    /* giver luft omkring teksten i input boksen */
+    margin-top: 10px;
+    /* Giver lidt mere luft over inputfeltet */
+    border: 2px solid black;
+    /* Kant på inputfeltet */
+}
+
+/* Placeholder tekst i vores input felt */
+::placeholder {
+    color: grey;
+    /* tekstfarve */
+}
+
+/* Vores links/ikoner til social media */
+.some a {
+    transition: all 0.3s ease;
+    /* transition til vores hovereffekt */
+}
+
+/* hover til vores links/ikoner til social media */
+.some a:hover {
+    transform: scale(1.1);
+    /* Gør ikonet større ved hover */
+}
+
+/* Burgermenuen */
+.burger-menu {
+    z-index: 2;
+    /* Gør så burgermenuen er synlig over alle elementer */
+    cursor: pointer;
+    /* Ændre musen til en hånd */
+    margin-right: 20px;
+    /* Giver luft omkring elementet */
+    padding-top: 10px
+}
+
+/* Container med ikoner til social media */
+.menu-overlay .some {
+    display: flex;
+    /* gør så ikonerne står ved siden af hinanden */
+    justify-content: center;
+    /* Får ikonerne til at stå i midten */
+    margin-top: 5vh
+        /* Giver luft over ikonerne */
+}
+
+/* de enkelte bare i vores burgermenu (Stjålet kode fra W3Schools)*/
+.bar1,
+.bar2,
+.bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    border-radius: 5px;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
+/* Class som bliver sat på elementer som skal forsvinde på mobilstørrelser */
+.hide-mobile {
+    display: none;
+}
+
+/* Class som kan sættes på elementer som skal forsvinde */
+.hide {
+    display: none;
+}
+
+@media only screen and (min-width: 800px) {
+
+    /* Class som bliver sat på elementer som skal forsvinde på dekstopstørrelser altså over 800px */
+    .hide-desktop {
+        display: none;
+    }
+
+    /* Classen ændres så de ting som skal ses på desktop bliver vist i over 800px */
+    .hide-mobile {
+        display: flex;
+    }
+
+    /* Skriftstørrelsen på vores Hero Overskrifter bliver større på desktop */
+    #splashvideo h1 {
+        font-size: 70px;
+    }
+
+    #splashimage h1 {
+        font-size: 70px;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {
+
+    /* Giver mere luft i headeren på større skærmstørrelser */
+    header {
+        padding: 15px 4vw;
+
+    }
+
+    #splashvideo h1 {
+        font-size: 75px;
+    }
+
+    #splashimage h1 {
+        font-size: 75px;
+    }
+
+    /* Større minus margin på vores pil, fordi den bliver skubbet længere ned pga af de større skriftstørresler på overskiften */
+    .arrow {
+        margin: -80px auto 0;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+
+
+    header {
+        padding: 15px 5vw;
+
+    }
+
+    #splashvideo h1 {
+        font-size: 85px;
+    }
+
+    #splashimage h1 {
+        font-size: 85px;
+    }
+
+
+}
+
+/********************** FOOOOOOOTER *****************************/
+
+
+footer {
+    height: 250px;
+    background-image: linear-gradient(45deg, #fe6400, #ffa700);
+    /* Orange gradient som baggrundsfarver */
+    display: grid;
+    /* Bruger display grid for at sætte det op i kolonner */
+    grid-template-columns: auto;
+    /* Vi starter med en enkelt kolonne på mobil */
+    text-align: center;
+    /* Centreret tekst */
+    padding: 30px;
+    grid-gap: 20px;
+    /* Mellemrum mellem kolonnerne i griddet */
+    margin-top: 50px;
+
+}
+
+/* ikoner til social media */
+.some img {
+    width: 50px;
+    /* størrelse på ikonerne */
+    margin: 0 5px;
+    /* mellemrum mellem ikonerne */
+}
+
+@media only screen and (min-width: 800px) {
+    footer {
+        grid-template-columns: auto auto auto;
+        /* Ændre griddet til tre kolonner på desktop størrelser */
+        align-items: center;
+        /* Centrere elementer inde i griddet vertikalt */
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    footer {
+        padding: 0 20vw
+            /* centere vores grid mere på større skærme */
+    }
+}
+
+/*********************** FORSIDE INDHOLD ***************************/
+
+/* Nyheder overskift */
+#nyheder h1 {
+    text-align: center;
+    /* centrert i midten */
+    padding: 140px 0 20px;
+    /* Luft omkring teksten */
+    font-size: 50px;
+    /* Skriftstørreslse */
+    text-transform: uppercase;
+    /* Gør alle bogstaver store */
+}
+
+/* Container som vi henter vores json nyheder ind i  */
+.nyheder {
+    display: grid;
+    /* Grid til at dele det op i kolonner */
+    grid-template-columns: auto;
+    /* en kolonne på mobil */
+    grid-gap: 20px;
+    /* mellemrum mellem grid kolonner */
+    padding: 20px;
+    /* Luft rundt om container */
+    max-width: 800px;
+    /* max bredde på mobil */
+    margin: 0 auto;
+    /* centrer containerne i midten pga af maxwidth */
+}
+
+/* vores nyheder hver især */
+.nyhed {
+    height: 300px;
+    /* højde på mobil */
+    background-position: center;
+    /* centrere billedet i containeren */
+    background-size: cover;
+    /* gør så billedet fylder det hele */
+}
+
+
+.nyhed h2 {
+    font-size: 20px;
+    /* Skriftstørrelse på vores nyhedsoverskfit */
+}
+
+.nyhed p {
+    font-size: 14px;
+    /* Skiftstørrelse på vores nyhedsbrødtekst */
+}
+
+/* Container med al vores tekst */
+.nyhed .tekst {
+    background-color: rgba(0, 0, 0, 0.50);
+    /* mørk baggrundsfarve for at få teksten til at stå mere frem */
+    height: 300px;
+    /* højde så det fylder det hele */
+    padding: 10px;
+    /* Luft omkring teksten */
+    display: flex;
+    /* Sætter flex på så vi kan placere teksten i bunden af containeren med flex-end */
+    align-items: flex-end;
+    /* Se ovenstående */
+    color: white;
+    /* Tekstfarve */
+    transition: all 0.3s ease;
+    /* Transistion til vores hover effekter */
+    cursor: pointer;
+    /* Ændre musen til en hånd så man kan se man kan klikke på dem */
+}
+
+.nyhed .tekst:hover {
+    background-color: rgba(0, 0, 0, 0.2)
+        /* Ændre baggrundsfarven når man hover */
+}
+
+
+
+.forside-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    grid-gap: 50px;
+    padding: 100px 20px;
+    align-items: center;
+}
+
+@media only screen and (min-width: 800px) {
+    .nyheder {
+        grid-template-columns: 1fr 1fr 1fr;
+        /* Ændre vores nyhedssektion til 3 kolonner i stedet for 1 på desktop */
+        max-width: 1200px;
+        /* ændre max-width på desktop */
+
+    }
+
+    .forside-info {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .nyhed {
+        height: 500px;
+        /* Ændre højren på vores nyheder på desktop */
+    }
+
+    .nyhed .tekst {
+        height: 500px;
+        /* ændre baggrundsoverlayet til at passe til højden på nyhederne */
+    }
+}
+
+@media only screen and (min-width: 1000px) {}
+
+@media only screen and (min-width: 1200px) {}
+
+
+/************************** BOOKING **********************/
+
+/* vores booking pakker */
+.booking_pakker {
+    display: grid;
+    /* Sat op i grid */
+    grid-template-columns: auto;
+    /* En kolonne på mobil */
+    /* Centrer teksten  horisontalt */
+    padding: 0 20px;
+    /* giver luft omkring vores grid */
+    max-width: 600px;
+    /* Max-width på mobil så vores grid forbliver kvadratisk */
+    margin: 50px auto;
+    /* Centrere vores grid horizontalt */
+
+}
+
+
+.pakke {
+    padding: 30px;
+    /* Giver luft omkring vores tekst og knap */
+    height: 100%;
+    /* højde på gridkolonner */
+}
+
+.pakke1,
+.pakke3 {
+    background-color: gray;
+    /* baggrundsfarve på lige numre grids */
+}
+
+.pakke2,
+.pakke4 {
+    background-color: darkgray;
+    /* Baggrundsfarve på ulige numre grids */
+}
+
+
+
+.pakke ul {
+    margin: 20px 0;
+    /* giver luft mellem vores liste og tekst */
+}
+
+.pakke li {
+    list-style: none;
+    /* Fjerner prikkerne fra listen */
+}
+
+.book {
+    width: 75px;
+    /* Bredde på kanp */
+    height: 30px;
+    /* Højde på knap */
+    border: 2px solid white;
+    /* Kant på vores knap */
+    background-color: orange;
+    /* baggrundsfarve på vores knap */
+    /* giver runde hjørner på knappen */
+    cursor: pointer;
+    /* Gør musen til en hånd ved mouseover */
+
+}
+
+.book-gf {
+    background-color: #54a29e;
+}
+
+.book-sk {
+    background-color: #0082ac;
+}
+
+.book-sf {
+    background-color: #55798e;
+}
+
+
+@media only screen and (min-width: 800px) {
+    .booking_pakker {
+        grid-template-columns: auto auto;
+        /* Gør vores grid til to kolonner på dekstop */
+        max-width: 1200px;
+        /* ænder vores maxwidth på desktop */
+
+    }
+
+    .pakke3 {
+        background-color: darkgray;
+        /* ændre baggrundsfarven på desktop */
+    }
+
+    .pakke4 {
+        background-color: gray;
+        /* ændre baggrundsfarven på desktop */
+    }
+
+
+}
+
+@media only screen and (min-width: 1000px) {
+    .booking_pakker {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media only screen and (min-width: 1200px) {}
+
+
+/*********************** ATTRAKTIONER *************************/
+/*
+Koldkrigsmuseum Stevsfort = #55798e
+Stevs Klint = #0082ac
+Geomuseum Faxe = #54a29e
+*/
+
+/* Container med vores attraktioner */
+.attraktioner {
+    padding: 50px 0;
+    /* Giver lidt luft i toppen */
+}
+
+/* Container som vores template bliver placeret i  */
+.attraktion1 {
+    display: grid;
+    /* sætter vores attraktioner i et grid */
+    grid-template-columns: auto;
+    /* En kolonne på mobil */
+    max-width: 800px;
+    /* Max width på mobil */
+    margin: 0 auto;
+    /* Centrere grid horisontalt */
+}
+
+/* De enkelte attratkioner */
+.attraktion1 article {
+    margin: 0 20px;
+    /* Giver luft på siden af gridet */
+    background-size: cover;
+    /* Gør så baggrundsbillederne fylder hele containeren */
+    background-position: center;
+    /* Centrere billederne */
+    height: 300px;
+    color: white;
+    /* Tekst farve */
+}
+
+
+/* Container med vores tekst */
+.attraktion1 section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* Giver containeren flex */
+    justify-content: center;
+    /* Centrere vores tekst horisontalt */
+    align-items: flex-end;
+    /* Flexer vores tekst ned i bunden af vores container */
+    padding: 30px;
+    /* Giver luft omkring vores elementer */
+    transition: all 0.3s ease;
+    /* Transistion til vores hover effekter */
+    cursor: pointer;
+    /* gør musen til en hånd så man kan se elementet kan trykkes på */
+}
+
+/* De inviduelle attraktioner ramt med en ID */
+.a68 section {
+    background-color: rgba(0, 130, 172, 0.50);
+    /* Farve overlay */
+    background-image: url(billeder/logo-overlay.png);
+    /* Logo fra attraktion */
+    background-size: contain;
+    /* Gør så hele logoet er inde i containeren */
+    background-repeat: no-repeat;
+    /* Gør så logoet ikke gentager sig */
+}
+
+.a66 section {
+    background-image: url(billeder/fort-overlay.png);
+    /* Logo fra attraktion */
+    background-size: contain;
+    /* Gør så hele logoet er inde i containeren */
+    background-repeat: no-repeat;
+    /* Gør så logoet ikke gentager sig */
+    background-color: rgba(85, 121, 142, 0.75);
+    /* Farve overlay */
+}
+
+.a15 section {
+    background-color: rgba(84, 162, 158, 0.75);
+    /* Farve overlay */
+    background-image: url(billeder/geo-overlay.png);
+    /* Logo fra attraktion */
+    background-size: contain;
+    /* Gør så hele logoet er inde i containeren */
+    background-repeat: no-repeat;
+    /* Gør så logoet ikke gentager sig */
+}
+
+
+@media only screen and (min-width: 800px) {
+
+    .attraktioner {
+        padding: 50px 20px;
+        /* Giver luft omkring vores grid på desktop */
+    }
+
+    .attraktion1 {
+        grid-template-columns: 1fr 1fr 1fr;
+        /* Ændre vores grid til tre kolonner på desktop */
+        max-width: 1200px;
+        /* ændre vores maxwidth på desktop */
+    }
+
+    .attraktion1 article {
+        margin: 20px 0;
+        height: 600px;
+        /* Ændre højden på vores attraktioner */
+    }
+
+    .attraktion1 section {
+        opacity: 0;
+        /* Gør vores overlay elementer gennemsigtige på dekstop */
+    }
+
+    .attraktion1 section:hover {
+        opacity: 1;
+        /* Fjerner gennemsigtighed på vores overlay når man hover over en attraktion */
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {}
+
+@media only screen and (min-width: 1200px) {}
+
+/************** Stevns Klint ****************/
+
+/* specifik styling på vores sider tilhørende stevns klint */
+.sk-menu a {
+    /*color: #0082ac;*/
+    color: white;
+    /* Ændre vores menu links til en passende farve */
+}
+
+.sk-menu a:hover {
+    color: #00aee6;
+    /* hover med anden farve */
+}
+
+.sk-mobil {
+    background-color: #0082ac;
+    /* Ændre farven på vores mobil menu til passende farve */
+}
+
+.sk-footer {
+    background-image: linear-gradient(45deg, #0082ac, #009cce);
+    /* Ændre farven på vores footer til passende farve */
+}
+
+/************** Stevnsfort ****************/
+
+/* specifik styling på vores sider tilhørende stevnsfort */
+
+.sf-menu a {
+    color: #55798e;
+    /* Ændre vores menu links til en passende farve */
+}
+
+.sf-menu a:hover {
+    color: #58a2cc;
+    /* hover med anden farve */
+}
+
+.sf-mobil {
+    background-color: #55798e;
+    /* Ændre farven på vores mobil menu til passende farve */
+}
+
+.sf-footer {
+    background-image: linear-gradient(45deg, #55798e, #5692b5)
+        /* Ændre farven på vores footer til passende farve */
+}
+
+/************** Geomuseum ****************/
+
+/* specifik styling på vores sider tilhørende geomuseum faxe */
+.gf-menu a {
+    color: #54a29e;
+    /* Ændre vores menu links til en passende farve */
+}
+
+.gf-menu a:hover {
+    color: #5de6df;
+    /* hover med anden farve */
+}
+
+.gf-mobil {
+    background-color: #54a29e;
+    /* Ændre farven på vores mobil menu til passende farve */
+}
+
+.gf-footer {
+    background-image: linear-gradient(45deg, #54a29e, #50d1cb);
+    /* Ændre farven på vores footer til passende farve */
+}
+
+/**************** OM **************/
+
+/* Container med vores accordion og vores destination for vores template */
+.om-indhold {
+    padding: 20px;
+    /* Giver luft omkring vores indhold */
+}
+
+/* accordion overskrifter */
+.acc h2 {
+    margin: 20px 0 23px;
+    /* giver luft omkring vores overskrift og skubber teksten ud af boksen så den forsvinder pga overflow: hidden*/
+    text-transform: uppercase;
+    /* gør alle bogstaver store */
+    font-family: Limestone-bold;
+    /* font */
+}
+
+/* De enkelte accordion containere */
+.acc {
+    background-color: #d4d4d4;
+    /* baggrundsfarve */
+    padding: 10px;
+    /* luft omkring elementerne */
+    overflow: hidden;
+    /* Gør så indholdet ikke bliver vist når elementet er foldet sammen */
+    height: 70px;
+    /* højde på vores accordion */
+    max-width: 1200px;
+    /* max bredde så der er luft omkring på store skærmstørrelser */
+    cursor: pointer;
+    /* ændre musen til en hånd så man kan se elementet kan klikkes på */
+    border-left: 20px solid black;
+    /* Giver en kan på elementet til venstre */
+    margin: 5px auto;
+    /* Centrerer vores accordion horisontalt */
+    border-top-left-radius: 15px;
+    /* Giver et rundt hjørne */
+    border-bottom-right-radius: 15px;
+    /* giver et rundt hjørne */
+
+}
+
+/* Accordion tekst inhold */
+.acc p {
+    margin: 0 0 20px 0;
+    /* Gør så elementet under vores p elementer bliver skubbet lidt ned */
+}
+
+.acc:hover {
+    border-left: 20px solid #ff6400;
+    /* ændre farven på vores border ved hover */
+}
+
+
+
+/************** Viden *************/
+
+/* Hovedoverskrifter i mellem vores accordions på vores viden side */
+.viden-overskrift {
+    text-align: center;
+    /* Centere vores overskrift horisontalt */
+    font-size: 40px;
+    /* tekststørresle */
+    margin-top: 50px;
+    /* Giver luft over vores overskrift */
+}
+
+/* Vores container med vores template */
+.viden-indhold {
+    padding: 20px;
+    /* luft omkring vores elementer */
+    max-width: 1200px;
+    /* Max bredde så vores elementer ikke bliver for store på større skærmstørrelser */
+    margin: 0 auto;
+    /* centrere vores accordion horisontalt */
+}
+
+/************ Kontakt **************/
+
+/* Container med vores kontakt indhold */
+#kontakt-indhold {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 50px auto 0;
+
+    /* Giver luft omkring vores tekst */
+}
+
+#kontakt-indhold p {
+    margin-bottom: 20px;
+    /* Skubber den næste tekst ned for at give luft */
+}
+
+#kontakt-indhold h3 {
+    margin-bottom: 20px;
+    font-size: 30px
+}
+
+#kontakt-indhold ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+
+/************ Undervisning ***************/
+
+.undervisning-dest {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.undervisning-indhold {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.und-billede {
+    max-height: 300px;
+    align-self: center;
+}
+
+
+summary {
+    cursor: pointer;
+    margin-bottom: 25px;
+    //border-left: 20px solid black;
+    //padding: 15px;
+    //background-color: #d4d4d4;
+    //font-size: 20px;
+
+}
+
+.und-beskrivelse {
+    font-weight: 600;
+    font-size: 17px
+}
+
+.und-content p {
+    margin-bottom: 20px;
+    list-style: none;
+}
+
+.und-content h2,
+.und-content h3,
+.und-content h4 {
+    margin-top: 20px;
+}
+
+@media only screen and (min-width: 800px) {
+
+    .undervisning-indhold {
+        grid-template-columns: 2fr 3fr;
+        grid-gap: 20px;
+        margin: 30px 0
+    }
+
+    .und-billede {
+        max-height: 300px;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {}
+
+@media only screen and (min-width: 1200px) {}
+
+
+/***************** Frontpages *************/
+
+.frontpage-indhold {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ytvideo {
+    margin: 50px 0 20px 0;
+}
+
+.frontpage-tekst p {
+    margin: 20px 0;
+}
+
+
+@media only screen and (min-width: 800px) {
+    .frontpage-indhold {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+
+    .ytvideo {
+        margin: 20px 0;
+    }
+}
+
+/****************  Classes  *************/
+
+.udfold {
+    height: 100%;
+    /* En class som bliver sat på vores elementer når man klikker på dem hvorefter de udfolder sig og man kan se indholdet */
+}
+
+
+/************** Farvekoder til Logoer ***********
+Koldkrigsmuseum Stevsfort = #55798e
+Stevs Klint = #0082ac
+Geomuseum Faxe = #54a29e
+Kalklandet = #fe6400
+*/

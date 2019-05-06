@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="icon" href="billeder/stevns-fav.png" type="image/gif" sizes="16x16">
+    <title>Stevnsfort Undervisning</title>
+</head>
+
+<body>
+    <!--ÅBNINGSTIDER-->
+    <!--header-->
+    <header id="myHeader" class="header">
+        <div class="header-content">
+            <a href="index.html" class="pil"><img src="billeder/tilbage-pil.png" alt=""></a>
+            <a href="stevnsfort.html" class="logo"><img src="billeder/logostevnsfort_logo.png" alt="logo"></a>
+            <div class="burger-menu hide-desktop" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <nav class="hide-mobile sf-menu">
+                <a href="sf-undervisning.html">Undervisning</a>
+                <a href="sf-book.html">Book</a>
+                <a href="sf-kontakt.html">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+    <div id="splashimage">
+        <h1 class="heading">Undervisning</h1>
+    </div>
+
+    <div class="menu-overlay hide-desktop sf-mobil">
+        <a href="sf-undervisning.html">Undervisning</a>
+        <a href="sf-book.html">Book</a>
+        <a href="sf-kontakt.html">Kontakt</a>
+        <a href="#">Søg</a>
+        <input type="text" placeholder="SØG">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+        </div>
+    </div>
+
+    <!--indhold-->
+    <section class="undervisning-dest">
+    </section>
+    <template class="und-temp">
+        <article class="undervisning-indhold">
+            <div>
+                <img src="" alt="" class="und-billede">
+            </div>
+            <div>
+                <h2 class="und-overskrift"></h2>
+                <p class="und-beskrivelse"></p>
+                <details>
+                    <summary>Læs Mere...</summary>
+                    <p class="und-content"></p>
+                </details>
+            </div>
+        </article>
+    </template>
+    <!--footer-->
+    <footer class="sf-footer" data-aos="zoom-in-up" data-aos-duration="1000">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+        </div>
+        <div class="åbningstider">
+            <h3>Åbningstider</h3>
+            <p>man-fre: 09:00-18:00<br>lør-søn: 10:00-16:00</p>
+        </div>
+        <div class="kontakt">
+            <h3>Kontakt</h3>
+            <p>Tlf: +45 12 34 56 78</p>
+            <p>Adresse: Stevns klint</p>
+        </div>
+    </footer>
+
+    <template class="und-temp">
+
+    </template>
+    <script src="script.js"></script>
+    <script>
+        let undervisning;
+        document.addEventListener("DOMContentLoaded", getJson);
+
+        async function getJson() {
+            const url = "http://mathiasdaugaard.dk/kea/tema7/kalklandet/wordpress/wp-json/wp/v2/undervisning_koldkrigs";
+            const undervisningJson = await fetch(url);
+            undervisning = await undervisningJson.json();
+
+            showUndervisning();
+        }
+
+        function showUndervisning() {
+
+            let dest = document.querySelector(".undervisning-dest"); /* Variabel med Destinationen for hvor vores indhold skal sendes hen i vores html */
+            let temp = document.querySelector(".und-temp"); /* Variabel som viser hvilken template functionen skal bruge i vores html */
+
+            undervisning.forEach(und => { /* vi et loop med for each så vi får sat alle vores array elementer ind i hver deres template/section */
+                let klon = temp.cloneNode(true).content; /*  */
+
+                klon.querySelector(".und-overskrift").innerHTML = und.title.rendered;
+                klon.querySelector(".und-content").innerHTML = und.content.rendered;
+                klon.querySelector(".und-beskrivelse").innerHTML = und.beskrivelse;
+                klon.querySelector(".und-billede").src = und.billede.guid;
+                dest.appendChild(klon);
+            })
+
+        }
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
+

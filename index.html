@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> <!-- Metalink til vores stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"> <!-- Metalink til et CSS animation Library -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> <!-- Import af Raleway Googlefont -->
+    <link rel="icon" href="billeder/kalk-fav.png" type="image/gif" sizes="16x16"> <!-- Import af Favicon -->
+    <title>Kalklandet</title>
+</head>
+
+<body>
+    <!--FORSIDE-->
+    <!--header-->
+    <header id="myHeader" class="header">
+        <div class="header-content">
+            <!-- Div som omslutter header elementer så de kan flexe -->
+            <a href="index.html" class="logo"><img src="billeder/logo-orange.svg" alt="logo"></a> <!-- Logo med link tilbage til forsiden -->
+            <div class="burger-menu hide-desktop" onclick="myFunction(this)">
+                <!-- div med function til vores burgermenu -->
+                <div class="bar1"></div> <!-- De enkelte bare i vores burgermenu lavet med diver i stedet for et billede -->
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <nav class="hide-mobile">
+                <!-- Desktop menu med class så den forsvinder på mobilstørrelser -->
+                <a href="attraktioner.html">Attraktioner</a>
+                <a href="om.html">Om os</a>
+                <a href="open.html">Kontakt</a>
+                <a href="viden.html">Viden</a>
+                <a href="#">søg</a>
+            </nav>
+        </div>
+    </header>
+    <div id="splashvideo" class="kalklandet">
+        <!-- Herosection med baggrundsvideo som looper og har autoplay -->
+        <video autoplay muted loop id="video">
+            <source src="billeder/sf-baggrundsvideo.mp4">
+        </video>
+        <div class="backgroundcolor">
+            <!-- div med vores hero overskrift -->
+            <div class="frontpage-header" data-aos="fade-in" data-aos-duration="2000">
+                <!-- Import af CSS library animation som får overskriften til at fade in når siden loades -->
+                <h1>kalklandet</h1>
+                <p>- En del af Østsjællands museum</p>
+            </div>
+            <a href="#nyheder">
+                <!-- Pil som viser at der er mere under foldet omsluttet af et link som linker til første section under foldet -->
+                <div class="arrow"></div> <!-- Div som har pilen som baggrundsbillede i CSS -->
+            </a>
+        </div>
+
+    </div>
+
+    <div class="menu-overlay hide-desktop">
+        <!-- Vores mobil menu som åbnes når man trykker på burgermenuen, og ligger ovenpå alt andet indhold med en class som gør at den forsvinder på desktop størrelser -->
+        <a href="attraktioner.html">Attraktioner</a>
+        <a href="om.html">Om os</a>
+        <a href="open.html">Kontakt</a>
+        <a href="viden.html">Viden</a>
+        <a href="#">Søg</a>
+        <input type="text" placeholder="SØG"> <!-- søge input som ikke virker -->
+        <div class="some">
+            <!-- div med social media icons og links -->
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+
+        </div>
+    </div>
+
+    <!--indhold-->
+    <section id="nyheder">
+        <!-- Section som omsluttet vores templates --->
+        <h1 data-aos="fade-in" data-aos-duration="1000">Nyheder</h1>
+        <div class="nyheder"></div> <!-- Div som vi henter vores template ind i med vores Json indhold -->
+    </section>
+
+    <!--footer-->
+    <footer data-aos="zoom-in-up" data-aos-duration="1000">
+        <!-- footer med animation fra CSS library -->
+        <div class="some">
+            <!-- div med iconer som linker til social media ligesom i vores mobil menu -->
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+        </div>
+        <div class="åbningstider">
+            <!-- Footer tekst med åbningstider -->
+            <h3>Åbningstider</h3>
+            <p>man-fre: 09:00-18:00<br>lør-søn: 10:00-16:00</p>
+        </div>
+        <div class="kontakt">
+            <!-- Footer tekst med kontaktinfo -->
+            <h3>Kontakt</h3>
+            <p>Tlf: +45 12 34 56 78</p>
+            <p>Adresse: Stevns klint</p>
+        </div>
+    </footer>
+    <template class="news">
+        <!-- Template til vores nyheder fra Wordpress -->
+        <section data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease" class="nyhed">
+            <!-- Section som omslutter vores informationer med animation fra CSS library -->
+            <article class="tekst">
+                <div>
+                    <h2></h2> <!-- Overskrift på vores nyhed -->
+                    <p class="beskrivelse"></p> <!-- Beskrivelse af vores nyhed -->
+                    <p class="dato"></p> <!-- Dato på den uploadede nyhed -->
+                </div>
+            </article>
+        </section>
+    </template>
+    <script src="script.js"></script> <!-- Scriptag til vores script dokument -->
+    <script>
+        /* Inline script med vores Json, så det er nemmere at overskue hvilken side det er til i stedet for at ligge det hele i samlet JS dokument */
+        let nyhed = []; /* Variabel med tomt array */
+        document.addEventListener("DOMContentLoaded", getJson); /* Eventlistner som sikre sig at alt vores html er loaded før den begynder at kalde scriptet, og vores getJson Function */
+        async function getJson() { /* Async function som henter vores Json */
+            const url = "http://mathiasdaugaard.dk/kea/tema7/kalklandet/wordpress/wp-json/wp/v2/forside"; /* En constant som er vores link med vores indhold */
+            const nyhedJson = await fetch(url); /* en constant som fetcher vores indhold fra vores url constant */
+            nyhed = await nyhedJson.json(); /* henter vores json indhold ind i vores tomme array */
+
+            showNews(); /* Kalder vores function som skal få vores indhold vist på siden */
+        }
+
+        function showNews() { /* Function som viser vores indhold */
+
+            let dest = document.querySelector(".nyheder"); /* Variabel med Destinationen for hvor vores indhold skal sendes hen i vores html */
+            let temp = document.querySelector(".news"); /* Variabel som viser hvilken template functionen skal bruge i vores html */
+
+            nyhed.forEach(nyh => { /* vi et loop med for each så vi får sat alle vores array elementer ind i hver deres template/section */
+                let klon = temp.cloneNode(true).content; /*  */
+
+                klon.querySelector("h2").innerHTML = nyh.title.rendered;
+                //klon.querySelector("a").href = nyh.tekst;
+                //klon.querySelector("div").innerHTML = att.content.rendered;
+                klon.querySelector(".beskrivelse").innerHTML = nyh.beskrivelse;
+                klon.querySelector(".dato").innerHTML = nyh.dato;
+                klon.querySelector("section").style.backgroundImage = `url(${nyh.billede.guid})`;
+                //klon.querySelector("section").setAttribute("class", `a${nyh.id}`);
+                dest.appendChild(klon);
+            })
+        }
+
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script> <!-- Henter CSS library script fra nettet -->
+    <script>
+        AOS.init(); /* Initiater vores Javascript til vores CSS Library */
+
+    </script>
+</body>
+
+</html>

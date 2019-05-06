@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="icon" href="billeder/kalk-fav.png" type="image/gif" sizes="16x16">
+    <title>Attraktioner</title>
+</head>
+
+<body>
+    <header id="myHeader" class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo"><img src="billeder/logo-orange.svg" alt="logo"></a>
+            <div class="burger-menu hide-desktop" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <nav class="hide-mobile">
+                <a href="attraktioner.html">Attraktioner</a>
+                <a href="om.html">Om os</a>
+                <a href="open.html">Kontakt</a>
+                <a href="viden.html">Viden</a>
+                <a href="#">søg</a>
+            </nav>
+        </div>
+    </header>
+    <div id="splashimage">
+        <h1 data-aos="fade-in" data-aos-duration="1000">attraktioner</h1>
+    </div>
+
+    <div class="menu-overlay hide-desktop">
+        <a href="attraktioner.html">Attraktioner</a>
+        <a href="om.html">Om os</a>
+        <a href="open.html">Kontakt</a>
+        <a href="viden.html">Viden</a>
+        <a href="#">Søg</a>
+        <input class="search" type="text" placeholder="SØG">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+
+        </div>
+    </div>
+    <main>
+        <div class="attraktioner">
+            <div class="attraktion1"></div>
+        </div>
+    </main>
+    <footer data-aos="zoom-in-up" data-aos-duration="1000">
+        <div class="some">
+            <a href="https://www.facebook.com/stevnsklint/" class="fa fa-facebook"><img src="billeder/facebook.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
+        </div>
+        <div class="åbningstider">
+            <h3>Åbningstider</h3>
+            <p>man-fre: 09:00-18:00<br>lør-søn: 10:00-16:00</p>
+        </div>
+        <div class="kontakt">
+            <h3>Kontakt</h3>
+            <p>Tlf: +45 12 34 56 78</p>
+            <p>Adresse: Stevns klint</p>
+        </div>
+    </footer>
+    <template class="att1">
+        <a href="">
+            <article>
+                <section>
+                    <h2 class="att-overskrift"></h2>
+                    <div class="color"></div>
+                </section>
+            </article>
+        </a>
+    </template>
+    <script src="script.js"></script>
+    <script>
+        let att1 = [];
+        document.addEventListener("DOMContentLoaded", getJson);
+
+        async function getJson() {
+            const url1 = "http://mathiasdaugaard.dk/kea/tema7/kalklandet/wordpress/wp-json/wp/v2/attraktioner";
+            const att1Json = await fetch(url1);
+            att1 = await att1Json.json();
+
+            showAtt1();
+        }
+
+        function showAtt1() {
+
+            let dest = document.querySelector(".attraktion1");
+            let temp = document.querySelector(".att1");
+
+            att1.forEach(att => {
+                let klon = temp.cloneNode(true).content;
+
+                klon.querySelector(".att-overskrift").innerHTML = att.title.rendered;
+                klon.querySelector("a").href = att.tekst;
+                //klon.querySelector("div").innerHTML = att.content.rendered;
+                klon.querySelector("article").style.backgroundImage = `url(${att.billede1.guid})`;
+                klon.querySelector("article").setAttribute("class", `a${att.id}`);
+                dest.appendChild(klon);
+            })
+        }
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
