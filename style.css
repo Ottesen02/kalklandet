@@ -367,8 +367,8 @@ nav a:hover {
 
 /* hover til vores mobil menu links */
 .menu-overlay a:hover {
-    transform: scale(1.1)
-        /* gør teksten større */
+    transform: scale(1.1);
+    /* gør teksten større */
 }
 
 /* søge bar i vores mobil menu */
@@ -481,7 +481,6 @@ nav a:hover {
     #splashimage h1 {
         font-size: 70px;
     }
-
 }
 
 @media only screen and (min-width: 1000px) {
@@ -489,7 +488,6 @@ nav a:hover {
     /* Giver mere luft i headeren på større skærmstørrelser */
     header {
         padding: 15px 4vw;
-
     }
 
     #splashvideo h1 {
@@ -507,11 +505,8 @@ nav a:hover {
 }
 
 @media only screen and (min-width: 1200px) {
-
-
     header {
         padding: 15px 5vw;
-
     }
 
     #splashvideo h1 {
@@ -833,7 +828,6 @@ Geomuseum Faxe = #54a29e
     /* Tekst farve */
 }
 
-
 /* Container med vores tekst */
 .attraktion1 section {
     width: 100%;
@@ -886,9 +880,7 @@ Geomuseum Faxe = #54a29e
     /* Gør så logoet ikke gentager sig */
 }
 
-
 @media only screen and (min-width: 800px) {
-
     .attraktioner {
         padding: 50px 20px;
         /* Giver luft omkring vores grid på desktop */
@@ -919,9 +911,6 @@ Geomuseum Faxe = #54a29e
 
 }
 
-@media only screen and (min-width: 1000px) {}
-
-@media only screen and (min-width: 1200px) {}
 
 /************** Stevns Klint ****************/
 
@@ -1034,7 +1023,6 @@ Geomuseum Faxe = #54a29e
     /* Giver et rundt hjørne */
     border-bottom-right-radius: 15px;
     /* giver et rundt hjørne */
-
 }
 
 /* Accordion tekst inhold */

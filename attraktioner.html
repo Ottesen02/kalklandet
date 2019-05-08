@@ -98,10 +98,9 @@
                 let klon = temp.cloneNode(true).content;
 
                 klon.querySelector(".att-overskrift").innerHTML = att.title.rendered;
-                klon.querySelector("a").href = att.tekst;
-                //klon.querySelector("div").innerHTML = att.content.rendered;
-                klon.querySelector("article").style.backgroundImage = `url(${att.billede1.guid})`;
-                klon.querySelector("article").setAttribute("class", `a${att.id}`);
+                klon.querySelector("a").href = att.tekst; /* Henter et link fra Json og sætter det på vores container */
+                klon.querySelector("article").style.backgroundImage = `url(${att.billede1.guid})`; /* Henter et billede fra Json og sætter det som baggrundsbillede i CSS */
+                klon.querySelector("article").setAttribute("class", `a${att.id}`); /* Sætter en specifik class på hver af vores elementer så vi kan style dem hver i sær */
                 dest.appendChild(klon);
             })
         }

@@ -12,14 +12,12 @@
 </head>
 
 <body>
-    <!--FORSIDE-->
-    <!--header-->
     <header id="myHeader" class="header">
         <div class="header-content">
             <!-- Div som omslutter header elementer så de kan flexe -->
             <a href="index.html" class="logo"><img src="billeder/logo-orange.svg" alt="logo"></a> <!-- Logo med link tilbage til forsiden -->
             <div class="burger-menu hide-desktop" onclick="myFunction(this)">
-                <!-- div med function til vores burgermenu -->
+                <!-- Lånt kode fra w3Schools - div med function til vores burgermenu -->
                 <div class="bar1"></div> <!-- De enkelte bare i vores burgermenu lavet med diver i stedet for et billede -->
                 <div class="bar2"></div>
                 <div class="bar3"></div>
@@ -33,11 +31,12 @@
                 <a href="#">søg</a>
             </nav>
         </div>
-    </header>
+    </header> <!-- Header med vores menu og burger menu -->
+
     <div id="splashvideo" class="kalklandet">
         <!-- Herosection med baggrundsvideo som looper og har autoplay -->
         <video autoplay muted loop id="video">
-            <source src="billeder/sf-baggrundsvideo.mp4">
+            <source src="billeder/shortversion_1.mp4">
         </video>
         <div class="backgroundcolor">
             <!-- div med vores hero overskrift -->
@@ -52,7 +51,7 @@
             </a>
         </div>
 
-    </div>
+    </div> <!-- Hero Section med baggrundsvideo og overskrift -->
 
     <div class="menu-overlay hide-desktop">
         <!-- Vores mobil menu som åbnes når man trykker på burgermenuen, og ligger ovenpå alt andet indhold med en class som gør at den forsvinder på desktop størrelser -->
@@ -68,7 +67,7 @@
             <a href="https://www.instagram.com/oestsjaellandsmuseum/" class="fa fa-instagram"><img src="billeder/instagram.png" alt="Instagram"></a>
 
         </div>
-    </div>
+    </div> <!-- Mobil Menu overlay som bliver vist når burgermenuen trykkes på -->
 
     <!--indhold-->
     <section id="nyheder">
@@ -97,6 +96,7 @@
             <p>Adresse: Stevns klint</p>
         </div>
     </footer>
+
     <template class="news">
         <!-- Template til vores nyheder fra Wordpress -->
         <section data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease" class="nyhed">
@@ -109,8 +109,10 @@
                 </div>
             </article>
         </section>
-    </template>
+    </template> <!-- Template til Json data -->
+
     <script src="script.js"></script> <!-- Scriptag til vores script dokument -->
+
     <script>
         /* Inline script med vores Json, så det er nemmere at overskue hvilken side det er til i stedet for at ligge det hele i samlet JS dokument */
         let nyhed = []; /* Variabel med tomt array */
@@ -129,24 +131,21 @@
             let temp = document.querySelector(".news"); /* Variabel som viser hvilken template functionen skal bruge i vores html */
 
             nyhed.forEach(nyh => { /* vi et loop med for each så vi får sat alle vores array elementer ind i hver deres template/section */
-                let klon = temp.cloneNode(true).content; /*  */
+                let klon = temp.cloneNode(true).content; /* variabel som siger kloning af template-taggets indhold. */
 
                 klon.querySelector("h2").innerHTML = nyh.title.rendered;
-                //klon.querySelector("a").href = nyh.tekst;
-                //klon.querySelector("div").innerHTML = att.content.rendered;
                 klon.querySelector(".beskrivelse").innerHTML = nyh.beskrivelse;
                 klon.querySelector(".dato").innerHTML = nyh.dato;
                 klon.querySelector("section").style.backgroundImage = `url(${nyh.billede.guid})`;
-                //klon.querySelector("section").setAttribute("class", `a${nyh.id}`);
-                dest.appendChild(klon);
+
+                dest.appendChild(klon); /* tilføj klonen til main variablen dest (main tagget) */
             })
         }
-
     </script>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script> <!-- Henter CSS library script fra nettet -->
     <script>
         AOS.init(); /* Initiater vores Javascript til vores CSS Library */
-
     </script>
 </body>
 

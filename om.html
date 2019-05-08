@@ -102,22 +102,13 @@
                 let klon = temp.cloneNode(true).content;
 
                 klon.querySelector("h2").innerHTML = om1.title.rendered;
-                //klon.querySelector("a").href = nyh.tekst;
-                //klon.querySelector("div").innerHTML = att.content.rendered;
                 klon.querySelector(".content").innerHTML = om1.content.rendered;
-                //klon.querySelector(".dato").innerHTML = nyh.dato;
-                //klon.querySelector("section").style.backgroundImage = `url(${nyh.billede.guid})`;
-                klon.querySelector(".acc").setAttribute("id", `a${om1.id}`);
+                klon.querySelector(".acc").setAttribute("id", `a${om1.id}`); /* Sætter en ID på vores container så vi kan åbne dem med JS */
                 dest.appendChild(klon);
 
-                // dest.lastElementChild.addEventListener("click", (e) => {
-                //   console.log(e.target);
-                // e.target.classList.toggle("udfold");
-
-                //  })
 
             })
-
+            /* En function som gør at når vi klikker på vores H2 i vores accordion så rammer den parentElement ID i stedet, som er containeren omkring vores accordion indhold og sætter classen "udfold" på så den åbner sig */
             document.querySelectorAll(".acc").forEach(e => {
                 e.addEventListener("click", e => {
                     console.log(e.target.parentElement.id);
